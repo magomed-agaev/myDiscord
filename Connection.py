@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
-import os 
+# import os 
 from Database import Database
-from mysql.connector import Error
+# from mysql.connector import Error
 
 load_dotenv(encoding="utf-8")  
 
@@ -92,8 +92,8 @@ if __name__ == "__main__":
     gestion = CRUD_authentification()
     # gestion.create("admin","admin","admin@admin2.com","admin")
     # gestion.update()
-    # gestion.delete("magomed.agaev@gmail.com")
-    print(gestion.read())
+    gestion.delete("magomed.agaev@gmail.com")
+    # gestion.read()
     # gestion.close_all()
         
 

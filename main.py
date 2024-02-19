@@ -1,8 +1,8 @@
-from Connection import Database
+from Connection import CRUD_authentification
 from mysql.connector import Error
 import eel
 
-connect = Database()
+connect = CRUD_authentification()
 
 def verification(email,passwd):
     for i in connect.read():

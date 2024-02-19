@@ -43,4 +43,4 @@ class Database:
 
 if __name__ == "__main__":
     gestion = Database()
-    print(gestion.query("SELECT * FROM USERS"))
+    # print(gestion.query("SELECT * FROM USERS"))
