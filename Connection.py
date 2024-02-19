@@ -1,25 +1,15 @@
 from dotenv import load_dotenv
 import os 
-import mysql.connector
+from Database import Database
+from mysql.connector import Error
 
-class Database:
+load_dotenv(encoding="utf-8")  
+
+class CRUD_authentification(Database):
 
     def __init__(self):
-        #Chargement des données
-        load_dotenv(encoding="utf-8")
-        
-        #connection base de donnée
-        self.mydb = mysql.connector.connect(
-        
-            host = os.getenv('host'),
-            user = os.getenv('user'),
-            password = os.getenv('passwd'),
-            database = os.getenv('database'),
-            autocommit = True
-        )
+        super().__init__()
 
-        self.cursor = self.mydb.cursor()
-        
     def create(self,last_name:str,name:str,email:str,passwd_hash:str):
         '''create new row in database
 
@@ -29,35 +19,26 @@ class Database:
             email -- str
             passwd_hash -- str  
         '''
-        try:
-            sql = "INSERT INTO users(nom,prenom,email,password_hash) VALUES (%s,%s,%s,%s) "
-            values = (last_name,name,email,passwd_hash)
-            
-            self.cursor.execute(sql,values)
-            print("users Added successfully !")
 
-                    
-        except mysql.connector.Error as e:
-            print(f"Error: {e}")
-            self.mydb.rollback()
+        req = "INSERT INTO users(nom,prenom,email,password_hash) VALUES (%s,%s,%s,%s) "
+        values = (last_name,name,email,passwd_hash)
+        
+        self.query(req,values)
+        print("users Added successfully !")
+
+        
 
     def read(self):
         '''read table users database
         '''
-        try:
-            sql = "SELECT * FROM users"
-            self.cursor.execute(sql)
-            show_table = self.cursor.fetchall()
-            return show_table
-            # for i in show_table:
-            #     print (i)
 
-                    
-        except mysql.connector.Error as e:
-            print(f"Error: {e}")
-            self.mydb.rollback()
- 
+        req = "SELECT * FROM users"
+        return self.query(req)
         
+        # for i in show_table:
+        #     print (i)
+    
+
     def update(self,colonne:str,new_name:str,user_id:int):
         '''update table users
 
@@ -67,31 +48,28 @@ class Database:
             user_id -- INT id
         
         '''
-        
-        try:
-            match(colonne):
-                
-                case 'nom':
-                    sql = "UPDATE users SET nom = %s WHERE user_id = %s"
-                case 'prenom':
-                    sql = "UPDATE users SET prenom = %s WHERE user_id = %s"
-                case 'email':
-                    sql = "UPDATE users SET email = %s WHERE user_id = %s"
-                case 'password_hash':
-                    sql = "UPDATE users SET password_hash = %s WHERE user_id = %s"
-                case _:
-                    print("Column name no found")
-            
-            values = (new_name,user_id)
-            self.cursor.execute(sql,values)
 
-            print("users updated successfully")
-              
+        match(colonne):
+            
+            case 'nom':
+                req = "UPDATE users SET nom = %s WHERE user_id = %s"
+            case 'prenom':
+                req = "UPDATE users SET prenom = %s WHERE user_id = %s"
+            case 'email':
+                req = "UPDATE users SET email = %s WHERE user_id = %s"
+            case 'password_hash':
+                req = "UPDATE users SET password_hash = %s WHERE user_id = %s"
+            case _:
+                print("Column name no found")
         
-        except mysql.connector.Error as e:
-            print(f"Error: {e}")
-            self.mydb.rollback()
+        values = (new_name,user_id)
+        self.query(req,values,modif=True)
+
+        print("users updated successfully")
+            
     
+    
+
     
     def delete(self,email:str):
         '''delete row in table users  
@@ -99,29 +77,28 @@ class Database:
         Arguments:
             email -- email-inscription 
         '''
-        try:    
-            sql = "DELETE FROM users WHERE email = %s"
-            self.cursor.execute(sql,(email,))
+    
+        req = "DELETE FROM users WHERE email = %s"
+        value = email
+        self.query(req,value)
 
-            print("users deleted successfully")
-        
-        except mysql.connector.Error as e:
-            print(f"Error: {e}")
-            self.mydb.rollback()
-
-    def close_all(self):
-        self.cursor.close()
-        self.mydb.close()
+        print("users deleted successfully")
+    
+    
 
 
 if __name__ == "__main__":
 
-    database_ = Database()
-    # database_.create("admin","admin","admin@admin1.com","admin")
-    # database_.update()
-    database_.delete("")
-    print(database_.read())
+    gestion = CRUD_authentification()
+    # gestion.create("admin","admin","admin@admin2.com","admin")
+    # gestion.update()
+    # gestion.delete("magomed.agaev@gmail.com")
+    print(gestion.read())
+    # gestion.close_all()
+        
 
 
-    # database_.close_all()
+        
+                    
+ 
         
