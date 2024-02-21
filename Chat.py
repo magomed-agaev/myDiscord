@@ -56,7 +56,6 @@ class CRUD_Chat(Database):
 if __name__ == "__main__":
 
     gestion = CRUD_Chat()
-    # gestion.create("admin","admin","admin@admin2.com","admin")
     # gestion.update()
     # gestion.delete("magomed.agaev@gmail.com")
     # gestion.read()
