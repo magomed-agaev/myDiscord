@@ -25,15 +25,16 @@ class CRUD_authentification(Database):
         values = (last_name,name,email,passwd_hash)
         self.query(req,values)     
        
-    def read(self):
+    def read(self,email):
         '''read all users in tables users
 
         Returns:
             all users 
         '''
 
-        req = "SELECT * FROM users"
-        return self.query(req)
+        req = "SELECT * FROM users where email = %s"
+        value = (email,)
+        return self.query(req,value)
         
         # for i in show_table:
         #     print (i)
@@ -75,7 +76,9 @@ class CRUD_authentification(Database):
         '''
     
         req = "DELETE FROM users WHERE email = %s"
-        self.query(req,email)
+        
+        value = (email,)
+        self.query(req,value)
 
         print("users deleted successfully")
     
@@ -89,9 +92,10 @@ class CRUD_authentification(Database):
             User_id
         '''
         req = "SELECT user_id FROM users where email = %s"
+        value = (email,)    
         
-        return self.query(req,email)
-         
+        return self.query(req,value)
+        
 
 
 if __name__ == "__main__":
@@ -100,9 +104,9 @@ if __name__ == "__main__":
     # gestion.create("admin","admin","admin@admin2.com","admin")
     # gestion.update()
     # gestion.delete("magomed.agaev@gmail.com")
-    # gestion.read()
+    # gestion.read('admin@admin1.com')
     # gestion.close_all()
-        
+    # gestion.get_Id_user('admin@admin1.com')
 
 
         

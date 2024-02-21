@@ -25,13 +25,12 @@ class Database:
         cursor = mydb.cursor()
         return mydb,cursor
 
-    def query(self,req,value=None,modif=False):
+    def query(self,req,value,modif=False):
         mydb, cursor = self.__connect()
         try:
             cursor.execute(req,value)
             if modif is False:
                 result = cursor.fetchall()
-                print(result)
                 return result
         except:
             mydb.rollback()
@@ -43,4 +42,4 @@ class Database:
 
 if __name__ == "__main__":
     gestion = Database()
-    # print(gestion.query("SELECT * FROM USERS"))
+    

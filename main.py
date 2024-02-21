@@ -10,7 +10,7 @@ connect = CRUD_authentification()
 
 eel.init("web")
 
-eel.start("index.html", mode='mozilla',block=False)
+
 
 @eel.expose
 def Signup(nom:str, prenom:str, email:str, passwd:str):
@@ -28,17 +28,21 @@ def Signup(nom:str, prenom:str, email:str, passwd:str):
 
 def Signin(email:str, passwd:str):
     if "" not in [email,passwd]:
-        for i in connect.read():
+        for i in connect.read(email):
             if i[3] == email and i[4] == passwd:
-               print("connection ok")
+                print("connection ok")
             #    return True
                 
-# @eel.expose
+@eel.expose
 def get_user_email():
     email = eel.getUserEmail()()
-    return email 
+    return email
 
 
+eel.start("index.html", mode='mozilla',port=9998)
+
+
+# print( get_user_email())
 
  
 # print (appel
