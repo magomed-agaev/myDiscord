@@ -10,6 +10,7 @@ class CRUD_authentification(Database):
     def __init__(self):
         super().__init__()
 
+    
     def create(self,last_name:str,name:str,email:str,passwd_hash:str):
         '''create new row in database
 
@@ -22,14 +23,13 @@ class CRUD_authentification(Database):
 
         req = "INSERT INTO users(nom,prenom,email,password_hash) VALUES (%s,%s,%s,%s) "
         values = (last_name,name,email,passwd_hash)
-        
-        self.query(req,values)
-        print("users Added successfully !")
-
-        
-
+        self.query(req,values)     
+       
     def read(self):
-        '''read table users database
+        '''read all users in tables users
+
+        Returns:
+            all users 
         '''
 
         req = "SELECT * FROM users"
@@ -66,11 +66,7 @@ class CRUD_authentification(Database):
         self.query(req,values,modif=True)
 
         print("users updated successfully")
-            
-    
-    
 
-    
     def delete(self,email:str):
         '''delete row in table users  
 
@@ -79,12 +75,23 @@ class CRUD_authentification(Database):
         '''
     
         req = "DELETE FROM users WHERE email = %s"
-        value = email
-        self.query(req,value)
+        self.query(req,email)
 
         print("users deleted successfully")
     
-    
+    def get_Id_user(self,email):
+        '''get user user_id how send the message 
+
+        Arguments:
+            email -- str
+
+        Returns:
+            User_id
+        '''
+        req = "SELECT user_id FROM users where email = %s"
+        
+        return self.query(req,email)
+         
 
 
 if __name__ == "__main__":
@@ -92,7 +99,7 @@ if __name__ == "__main__":
     gestion = CRUD_authentification()
     # gestion.create("admin","admin","admin@admin2.com","admin")
     # gestion.update()
-    gestion.delete("magomed.agaev@gmail.com")
+    # gestion.delete("magomed.agaev@gmail.com")
     # gestion.read()
     # gestion.close_all()
         

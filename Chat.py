@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 # import os 
 from Database import Database
-# from mysql.connector import Error
+from Connection import CRUD_authentification
 
 load_dotenv(encoding="utf-8")  
 
@@ -10,28 +10,26 @@ class CRUD_Chat(Database):
     def __init__(self):
         super().__init__()
 
-    def create(self,last_name:str,name:str,email:str,passwd_hash:str):
+    def create(self,id_sender:int,message_is:str,id_type:int):
         '''create new row in table Chat_Public
 
         Arguments:
-            last_name -- str
-            name -- str
-            email -- str
-            passwd_hash -- str  
+            id_sender -- id_user how send this message
+            message_is -- message encoding in base64
+            id_type -- messages types: -Txt:1 -Voice:2 -Video:3 -Picture:4
         '''
 
-        req = "INSERT INTO Chat_public(nom,prenom,email,password_hash) VALUES (%s,%s,%s,%s) "
-        values = ()
-        
+        req = "INSERT INTO Chat_public(id_sender,message_is,id_type) VALUES (%s,%s,%s,%s) "
+        values = (id_sender,message_is,id_type)
         self.query(req,values)
-        print("users Added successfully !")
+        print("message add")
    
 
     def read(self):
-        '''read table users database
+        '''read table chat_Public
         '''
 
-        req = "SELECT * FROM chat_public"
+        req = "SELECT id,message_is,time FROM chat_public"
         return self.query(req)
         
         # for i in show_table:

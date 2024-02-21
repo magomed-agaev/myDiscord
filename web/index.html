@@ -28,7 +28,7 @@
                     <div class="input-field">
                         <i class="fa-solid fa-envelope"></i>
                         <input type="email" id="email" placeholder="EMAIL" required />
-                                        </div>
+                    </div>
                     <div class="input-field">
                         <i class="fa-solid fa-key"></i>
                         <input type="password" id="password" placeholder="PASSWORD" required />
@@ -38,7 +38,7 @@
                 
                 <div class="btn-field">
                     <button type="submit" id="signupBtn" class="disabled" onclick="Signup()">Sign up</button>
-                    <button type="submit" id="signinBtn" class="disabled" onclick="Signin()">Sign in</button>
+                    <button type="submit" id="signinBtn" class="disabled" onclick="Signin();getUserEmail()">Sign in</button>
                 </div>
             
             </form>
@@ -52,6 +52,18 @@
         let firstnameField = document.getElementById("firstnameField");
         let lastnameField = document.getElementById("lastnameField");
         let title = document.getElementById("title");
+        
+        eel.expose(getUserEmail);
+        function getUserEmail() {
+            var email = document.getElementById("email").value;
+            return email 
+        }
+        
+        eel.expose(getUserPasswd);
+        function getUserPasswd() {
+            var passwd = document.getElementById("passwd").value;
+            return passwd
+        }
 
         function Signin() {
             firstnameField.style.maxHeight = "0%";
@@ -62,9 +74,10 @@
             var email = document.getElementById("email").value;
             var password_hash = document.getElementById("password").value;
             eel.Signin(email, password_hash);
-
+            
         }
         
+
         function Signup() {
             firstnameField.style.maxHeight = "100%";
             lastnameField.style.maxHeight = "100%";
@@ -77,7 +90,7 @@
             var password_hash = document.getElementById("password").value;
             eel.Signup(nom, prenom, email, password_hash);
         }
-    
+        
     </script>
 
 </body>
