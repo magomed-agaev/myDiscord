@@ -9,12 +9,9 @@ class Client():
         # self.chat = CRUD_Chat()
         self._email = get_user_email()
         self._id = self.connect.get_Id_user(self._email)
-
-    # def get_user_id(self) :
-    #     user_id = self.connect.get_Id_user(self._email)
-    #     return user_id
+        # return user_id
 
 if __name__ == "__main__":
     client = Client()
-    # print(client._email)
+        # print(client._email)
     

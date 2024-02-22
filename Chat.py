@@ -9,8 +9,8 @@ load_dotenv(encoding="utf-8")
 class CRUD_Chat(Database):
 
     def __init__(self):
-        super().__init__()
-        # super().__init__()
+        Database.__init__()
+        Client.__init__()
    
     def set_msg(self,id_sender:int,message_is:str,id_type:int):
         '''create new row in table Chat_Public
@@ -48,15 +48,13 @@ class CRUD_Chat(Database):
         value = email
         self.query(req,value)
 
-        print("message deleted successfully")
-    
-    
-
+        print("message deleted successfully") 
 
 if __name__ == "__main__":
 
     gestion = CRUD_Chat()
-    # gestion.update()
+    
+    gestion.set_msg(Client()._id)
     # gestion.delete("magomed.agaev@gmail.com")
     # gestion.read()
     # gestion.close_all()
