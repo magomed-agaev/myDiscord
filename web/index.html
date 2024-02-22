@@ -4,46 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Interface</title>
+    <title>WhatsApp Web</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
-        <div class="container3">
-            <div><input type="text" class="round-input" placeholder="Search"></div>
-            <div class="header-buttons">
-                <a href="index.html">Friends</a>
-                <a href="index.html">Group</a>
-                <a href="index.html">Chat</a>
-                <a href="index.html">Home</a>
-            </div>
+
+        <!-- <img src="https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1606/tuktukdesign160600107/59070188-user-icon-man-profil-homme-d-affaires-avatar-personne-ic%C3%B4ne-illustration-vectorielle.jpg"
+                alt="png"> -->
+
+    </header>
+
+
+    <div class="container">
+        <div class="friends-list">
+            <!-- Friends list content goes here -->
+
+            <ul>
+                <div class="container3">
+                    <div><input type="text" class="round-input" placeholder="Search or start new chat"></div>
+
+                    <li>Friend 1</li>
+                    <li>Friend 2</li>
+                    <li>Friend 3</li>
+                    <!-- Add more friends as needed -->
+            </ul>
             <div class="login-button">
                 <button id="login-button">Log out</button>
             </div>
         </div>
-    </header>
-
-
-    <main>
-        <div class="chat-container">
-            <div class="chat-messages" id="chat-messages">
-                <!-- Chat messages will be added here dynamically -->
+        <div class="border"></div>
+        <div class="message-table">
+            <!-- Message table content goes here -->
+            <div class="message">
+                <div class="message-sender"></div>
+                <div class="message-content"></div>
             </div>
-            <div class="chat-input">
-                <input type="text" id="message-input" placeholder="Type your message...">
-                <button id="send-button">Send</button>
+            <div class="message">
+                <div class="message-sender"></div>
+                <div class="message-content"></div>
             </div>
-        </div>
-    </main>
+            <main>
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <!-- Chat messages will be added here dynamically -->
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="message-input" placeholder="Type your message...">
+                        <div class="chat-input">
+                            <!-- <input type="text" id="message-input" placeholder="Type your message..."> -->
+                            <button id="emoji-button">😊</button>
+                            <button id="send-button">Send</button>
+                        </div>
 
-    <footer>
-        <div class="footer-container">
-            <p>Footer content </p>
+                        <!-- <button id="send-button">Send</button> -->
+                    </div>
+                </div>
+            </main>
+            <!-- More messages go here -->
         </div>
-    </footer>
-
-    <script src="script.js"></script>
+    </div>
 </body>
 
 </html>

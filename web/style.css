@@ -1,93 +1,105 @@
-.login-button {
-    margin-right: 100px;
-    /* Adjusted margin to move the button 10px to the left */
-}
-
-.header-buttons {
-    display: flex;
-    align-items: center;
-    /* To align buttons vertically */
-}
-
-.header-buttons a {
-    color: #fff;
-    text-decoration: none;
-    margin-right: 20px;
-}
-
-.login-button {
-    margin-left: auto;
-    /* Pushes the login button to the right */
-}
-
-.login-button button {
-    background-color: #d32525;
-    /* WhatsApp green color */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    outline: none;
+html {
+    margin: 1%;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url(https://i.redd.it/yrnmg3lhi4m61.jpg);
-    /* background-color: #f0f2f5; */
-    /* WhatsApp background color */
     margin: 0;
     padding: 0;
-
-
+    height: 100%;
+    background-color: #1c9d69;
 }
 
-header {
-    background-color: #075e54;
-    /* WhatsApp header background color */
-    color: #fff;
-    /* WhatsApp header text color */
+
+.border {
+    /* display: flex; */
+    /* align-items: center; */
     padding: 10px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+
+    /* WhatsApp chat input background color */
 }
 
-.container3 {
+.container {
     display: flex;
-    align-items: center;
+    height: 100%;
 }
 
-.container3 a {
-    color: #fff;
-    /* WhatsApp header link color */
-    text-decoration: none;
-    margin-right: 20px;
+.friends-list {
+    flex: 2;
+    background-color: #fafafa;
+    overflow-y: auto;
+    float: left;
+
+}
+
+.friends-list ul {
+    list-style-type: none;
+    padding: 18px;
+    margin-top: -18px;
+    margin-left: -18px;
+    /* border-style: dashed;
+    border: 1px solid rgb(108, 108, 108); */
+}
+
+.message-table {
+    flex: 4;
+    padding: 20px;
+    overflow-y: auto;
+    background-image: url(https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-width: 100px;
+
+
+}
+
+.message {
+    margin-bottom: 20px;
+}
+
+.message-sender {
+    font-weight: bold;
+
+}
+
+.message-content {
+    margin-left: 10px;
 }
 
 .container3 input[type="text"] {
+    width: 333px;
     padding: 10px;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-    margin-right: 20px;
-    background-color: #e1e1e1;
-    /* WhatsApp search input background color */
-}
+    background-color: white;
+    text-align: left;
+    padding-left: 50px;
 
-.chat-container {
-    width: 820px;
-    margin: 220px;
-    /* Adjusted margin */
-    border: 1px solid #a1a0a0;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color: #fff;
 
 }
+
+.round-input {
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZPcqnOlg-6b0OuT2vHEeyITwpKEcQRo84iw&usqp=CAU);
+    background-size: 30px;
+    background-position: 10px;
+    background-repeat: no-repeat;
+    /* padding-left: 40px;
+    height: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: right; */
+}
+
+.round-input {
+    width: 200px;
+    /* Adjust as needed */
+    padding: 10px;
+    margin-left: auto;
+    /* Adjust as needed */
+    /* border-radius: 20px; */
+    /* Adjust as needed */
+    text-align: center;
+    /* Center aligns the placeholder text */
+
+}
+
 
 .chat-messages {
     max-height: 550px;
@@ -100,7 +112,7 @@ header {
     display: flex;
     align-items: center;
     padding: 10px;
-    background-color: #f0f2f5;
+    background-color: #e6e6e7;
     /* WhatsApp chat input background color */
 }
 
@@ -121,18 +133,38 @@ header {
     cursor: pointer;
 }
 
-footer {
-    background-color: #075e54;
-    /* WhatsApp footer background color */
-    color: #fff;
-    /* WhatsApp footer text color */
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1000;
+#emoji-button {
+    font-size: 15px;
+    /* Adjust size as needed */
+    margin-right: 10px;
+    /* Adjust spacing */
 }
 
-.footer-container {
-    text-align: center;
+img {
+    width: 50px;
+    height: 50px;
+}
+
+.login-button {
+    margin-right: 100px;
+    /* Adjusted margin to move the button 10px to the left */
+}
+
+
+.login-button {
+    margin-left: auto;
+    /* Pushes the login button to the right */
+}
+
+.login-button button {
+    background-color: #d32525;
+    /* WhatsApp green color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 345px;
+
 }
