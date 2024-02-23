@@ -10,16 +10,15 @@ connect = CRUD_authentification()
 
 eel.init("web")
 
-
-
 @eel.expose
 def Signup(nom:str, prenom:str, email:str, passwd:str):
 
     if "" not in [nom,prenom,email,passwd]:
-        for i in connect.read():
+        for i in connect.read(email):
             try :
                 if i[3] != email:
                     connect.create(nom,prenom,email,passwd)
+                    print("ok")
 
             except Error as e: 
                 print ("Il semble y avoir une erreur veuillez réessayer")      

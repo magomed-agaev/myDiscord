@@ -1,16 +1,11 @@
-from dotenv import load_dotenv
-# import os 
 from Database import Database
-# from mysql.connector import Error
 
-load_dotenv(encoding="utf-8")  
 
-class CRUD_authentification(Database):
+class CRUD_authentification():
 
     def __init__(self):
-        super().__init__()
-
-    
+        self.dtb = Database()
+        
     def create(self,last_name:str,name:str,email:str,passwd_hash:str):
         '''create new row in database
 
@@ -23,7 +18,7 @@ class CRUD_authentification(Database):
 
         req = "INSERT INTO users(nom,prenom,email,password_hash) VALUES (%s,%s,%s,%s) "
         values = (last_name,name,email,passwd_hash)
-        self.query(req,values)     
+        self.dtb.query(req,values)     
        
     def read(self,email):
         '''read all users in tables users
@@ -34,12 +29,8 @@ class CRUD_authentification(Database):
 
         req = "SELECT * FROM users where email = %s"
         value = (email,)
-        return self.query(req,value)
-        
-        # for i in show_table:
-        #     print (i)
-    
-
+        return self.dtb.query(req,value)
+          
     def update(self,colonne:str,new_name:str,user_id:int):
         '''update table users
 
@@ -64,7 +55,7 @@ class CRUD_authentification(Database):
                 print("Column name no found")
         
         values = (new_name,user_id)
-        self.query(req,values,modif=True)
+        self.dtb.query(req,values,modif=True)
 
         print("users updated successfully")
 
@@ -78,7 +69,7 @@ class CRUD_authentification(Database):
         req = "DELETE FROM users WHERE email = %s"
         
         value = (email,)
-        self.query(req,value)
+        self.dtb.query(req,value)
 
         print("users deleted successfully")
     
@@ -94,7 +85,7 @@ class CRUD_authentification(Database):
         req = "SELECT user_id FROM users where email = %s"
         value = (email,)    
         
-        return self.query(req,value)
+        return self.dtb.query(req,value)
         
 
 
@@ -104,7 +95,7 @@ if __name__ == "__main__":
     # gestion.create("admin","admin","admin@admin2.com","admin")
     # gestion.update()
     # gestion.delete("magomed.agaev@gmail.com")
-    # gestion.read('admin@admin1.com')
+    print(gestion.read('admin@admin1.com'))
     # gestion.close_all()
     # gestion.get_Id_user('admin@admin1.com')
 

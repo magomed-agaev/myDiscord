@@ -6,11 +6,12 @@ from client import Client
 
 load_dotenv(encoding="utf-8")  
 
-class CRUD_Chat(Database):
+class CRUD_Chat():
 
     def __init__(self):
-        Database.__init__()
-        Client.__init__()
+        # Database.__init__()
+        # self.client = Client()
+        self.dtb = Database()
    
     def set_msg(self,id_sender:int,message_is:str,id_type:int):
         '''create new row in table Chat_Public
@@ -32,7 +33,7 @@ class CRUD_Chat(Database):
         '''
 
         req = "SELECT id_sender,message_is,time FROM chat_public"
-        return self.query(req)
+        return self.dtb.query(req)
         
         # for i in show_table:
         #     print (i)
@@ -46,15 +47,15 @@ class CRUD_Chat(Database):
     
         req = "DELETE FROM chat_Public WHERE email = %s"
         value = email
-        self.query(req,value)
+        self.dtb.query(req,value)
 
         print("message deleted successfully") 
 
 if __name__ == "__main__":
 
     gestion = CRUD_Chat()
-    
-    gestion.set_msg(Client()._id)
+    client = Client()
+    gestion.set_msg(client._id)
     # gestion.delete("magomed.agaev@gmail.com")
     # gestion.read()
     # gestion.close_all()
