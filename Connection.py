@@ -20,11 +20,11 @@ class CRUD_authentification():
         values = (last_name,name,email,passwd_hash)
         self.dtb.query(req,values)     
        
-    def read(self,email):
-        '''read all users in tables users
+    def read(self,email:str):
+        '''read user row in tables users
 
         Returns:
-            all users 
+            With email get all information user 
         '''
 
         req = "SELECT * FROM users where email = %s"
@@ -73,7 +73,7 @@ class CRUD_authentification():
 
         print("users deleted successfully")
     
-    def get_Id_user(self,email):
+    def get_Id_user(self,email:str):
         '''get user user_id how send the message 
 
         Arguments:

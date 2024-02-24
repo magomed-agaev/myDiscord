@@ -1,6 +1,6 @@
 # from Database import Database
 from Connection import CRUD_authentification
-from Chat import CRUD_Chat
+# from Chat import CRUD_Chat
 from main import *
 
 class Client():
