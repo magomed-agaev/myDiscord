@@ -66,7 +66,7 @@ class CRUD_Chat:
 
 
 if __name__ == "__main__":
-
+    
     gestion = CRUD_Chat
     client = Client
     # print(gestion.set_msg(client._id,'hello',1))
