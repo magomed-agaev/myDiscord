@@ -36,8 +36,9 @@ body {
     padding: 18px;
     margin-top: -18px;
     margin-left: -18px;
-    /* border-style: dashed;
-    border: 1px solid rgb(108, 108, 108); */
+    border-style: dashed;
+    border: 1px solid rgb(175, 175, 175);
+
 }
 
 .message-table {
@@ -48,6 +49,8 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     border-width: 100px;
+    border-top: 40px solid #b8baba;
+
 
 
 }
@@ -66,7 +69,7 @@ body {
 }
 
 .container3 input[type="text"] {
-    width: 333px;
+    width: 336px;
     padding: 10px;
     background-color: white;
     text-align: left;
@@ -111,7 +114,7 @@ body {
 .chat-input {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 5px;
     background-color: #e6e6e7;
     /* WhatsApp chat input background color */
 }
@@ -165,6 +168,7 @@ img {
     border-radius: 20px;
     cursor: pointer;
     outline: none;
-    margin-top: 345px;
+    margin-top: 430px;
+    margin-left: 10px;
 
 }

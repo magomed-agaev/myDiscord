@@ -25,9 +25,9 @@
                 <div class="container3">
                     <div><input type="text" class="round-input" placeholder="Search or start new chat"></div>
 
-                    <li>Friend 1</li>
+                    <!-- <li>Friend 1</li>
                     <li>Friend 2</li>
-                    <li>Friend 3</li>
+                    <li>Friend 3</li> -->
                     <!-- Add more friends as needed -->
             </ul>
             <div class="login-button">
@@ -37,6 +37,7 @@
         <div class="border"></div>
         <div class="message-table">
             <!-- Message table content goes here -->
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="profil" style="margin-top: 1px;">
             <div class="message">
                 <div class="message-sender"></div>
                 <div class="message-content"></div>
@@ -54,13 +55,19 @@
                         <input type="text" id="message-input" placeholder="Type your message...">
                         <div class="chat-input">
                             <!-- <input type="text" id="message-input" placeholder="Type your message..."> -->
-                            <button id="emoji-button">😊</button>
-                            <button id="send-button">Send</button>
-                        </div>
+                            <div class="chat-input">
+                                <input type="file" id="image-input" accept="image/*" style="display: none;">
+                                <label for="image-input" style="margin-right: 15px;">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/8377/8377243.png" alt="Image Icon"
+                                        id="image-icon" style="width: 30px; height: 30px;">
+                                </label>
+                                <button id="emoji-button">😊</button>
+                                <button id="send-button">Send</button>
+                            </div>
 
-                        <!-- <button id="send-button">Send</button> -->
+                            <!-- <button id="send-button">Send</button> -->
+                        </div>
                     </div>
-                </div>
             </main>
             <!-- More messages go here -->
         </div>
