@@ -24,7 +24,6 @@
                         <i class="fa-solid fa-user"></i>
                         <input type="text" id="prenom" placeholder="LAST NAME" required />
                     </div>
-                    
                     <div class="input-field">
                         <i class="fa-solid fa-envelope"></i>
                         <input type="email" id="email" placeholder="EMAIL" required />
@@ -33,7 +32,7 @@
                         <i class="fa-solid fa-key"></i>
                         <input type="password" id="password" placeholder="PASSWORD" required />
                     </div>
-                    <p>Forgot password? <a href="#">Click Here!</a></p>
+                    
                 </div>
                 
                 <div class="btn-field">
@@ -44,7 +43,6 @@
             </form>
         </div>
     </div>
-
 
     <script>
         let signupBtn = document.getElementById("signupBtn");
@@ -64,19 +62,20 @@
             var passwd = document.getElementById("passwd").value;
             return passwd
         }
-
+    
         function Signin() {
             firstnameField.style.maxHeight = "0%";
             lastnameField.style.maxHeight = "0%";
             title.innerHTML = "Sign In";
             signupBtn.classList.add("disabled");
             signinBtn.classList.remove("disabled");
+            
             var email = document.getElementById("email").value;
             var password_hash = document.getElementById("password").value;
             eel.Signin(email, password_hash);
         }
         
-
+    
         function Signup() {
             firstnameField.style.maxHeight = "100%";
             lastnameField.style.maxHeight = "100%";
@@ -89,9 +88,8 @@
             var password_hash = document.getElementById("password").value;
             eel.Signup(nom, prenom, email, password_hash);
         }
-        
-    </script>
-
+        </script>
+    
 </body>
 
 </html>

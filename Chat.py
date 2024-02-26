@@ -6,7 +6,7 @@ from client import Client
 
 # load_dotenv(encoding="utf-8")  
 
-class CRUD_Chat():
+class CRUD_Chat:
 
     def __init__(self):
         self.dtb = Database()
@@ -49,8 +49,8 @@ class CRUD_Chat():
 
 if __name__ == "__main__":
 
-    gestion = CRUD_Chat()
-    client = Client()
+    gestion = CRUD_Chat
+    client = Client
     # print(gestion.set_msg(client._id,'hello',1))
     # gestion.delete("magomed.agaev@gmail.com")
     # gestion.read()
