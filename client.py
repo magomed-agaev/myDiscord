@@ -1,13 +1,15 @@
 # from Database import Database
-from Connection import CRUD_authentification
+from crud_authentification import CRUD_authentification
 # from Chat import CRUD_Chat
-from main import Main
+from main import get_user_email
+# from main import Main
 
 class Client:
     def __init__(self):
         self.connect = CRUD_authentification()
         # self.chat = CRUD_Chat()
-        self._email = Main().get_user_email()
+        # self.main = Main()
+        self._email = get_user_email()
         self._id = self.connect.get_Id_user(self._email)
         # return user_id
 
