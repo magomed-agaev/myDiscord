@@ -28,6 +28,8 @@ body {
     background-color: #fafafa;
     overflow-y: auto;
     float: left;
+    border-style: dashed;
+    border: 1px solid rgb(175, 175, 175);
 
 }
 
@@ -36,8 +38,15 @@ body {
     padding: 18px;
     margin-top: -18px;
     margin-left: -18px;
+
+
+
+}
+
+li {
     border-style: dashed;
     border: 1px solid rgb(175, 175, 175);
+    width: 110%;
 
 }
 
