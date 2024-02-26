@@ -4,12 +4,7 @@ import eel
 
 connect = CRUD_authentification()
 
-
-
-    # def __init__(self):
-    #     connect = CRUD_authentification()
-eel.init("web")
-# eel.start("index.html", mode='mozilla',port=9998)  
+eel.init("web","web_chat")
 
 @eel.expose
 def Signup(nom:str, prenom:str, email:str, passwd:str):
@@ -39,43 +34,7 @@ def get_user_email():
     email = eel.getUserEmail()()
     return email
 
-# def start(self):
-#     eel.start("index.html", mode='mozilla',port=9998)  
-
-
-# print( get_user_email())
-
-
-# print (appel
-# print(f"L'adresse2{value}")   
-# value = None
-
-# @eel.expose
-# def get_user_email():
-#     email = eel.getUserEmail()
-#     return email
-
-# value = eel.getUserEmail()
-# print(value)
-# get_user_email()
-# def get_user_passwd(passwd):
-#     value = passwd
-#     return value
-
-# def get_user_nom(nom):
-#     value = nom
-#     return value 
-
-# def get_user_prenom(prenom):
-#     value = prenom
-#     return value
-
-
 
 if __name__ == "__main__":
-    # main = Main()
-    # main.start()
-
-#     eel.init("web")
     eel.start("index.html", mode='mozilla',port=9998)
     

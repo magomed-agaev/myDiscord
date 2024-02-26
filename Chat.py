@@ -15,4 +15,3 @@ class Chat:
     def print_sender(self):
         return  self.crud_chat.get_id_sender()
     
-    
