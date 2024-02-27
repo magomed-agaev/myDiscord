@@ -1,12 +1,10 @@
 from database import Database
 
-
-class CRUD_authentification():
-
+class Authentification:
     def __init__(self):
         self.dtb = Database()
         
-    def create(self,last_name:str,name:str,email:str,passwd_hash:str):
+    def set_new_user(self,last_name:str,name:str,email:str,passwd_hash:str):
         '''create new row in database
 
         Arguments:
@@ -15,18 +13,16 @@ class CRUD_authentification():
             email -- str
             passwd_hash -- str  
         '''
-
         req = "INSERT INTO users(nom,prenom,email,password_hash) VALUES (%s,%s,%s,%s) "
         values = (last_name,name,email,passwd_hash)
         self.dtb.query(req,values)     
        
     def read(self,email:str):
         '''read user row in tables users
-
+        
         Returns:
             With email get all information user 
         '''
-
         req = "SELECT * FROM users where email = %s"
         value = (email,)
         return self.dtb.query(req,value)
@@ -40,9 +36,7 @@ class CRUD_authentification():
             user_id -- INT id
         
         '''
-
         match(colonne):
-            
             case 'nom':
                 req = "UPDATE users SET nom = %s WHERE user_id = %s"
             case 'prenom':
@@ -53,10 +47,9 @@ class CRUD_authentification():
                 req = "UPDATE users SET password_hash = %s WHERE user_id = %s"
             case _:
                 print("Column name no found")
-        
+            
         values = (new_name,user_id)
         self.dtb.query(req,values,modif=True)
-
         print("users updated successfully")
 
     def delete(self,email:str):
@@ -65,16 +58,15 @@ class CRUD_authentification():
         Arguments:
             email -- email-inscription 
         '''
-    
         req = "DELETE FROM users WHERE email = %s"
         
         value = (email,)
         self.dtb.query(req,value)
 
         print("users deleted successfully")
-    
+        
     def get_Id_user(self,email:str):
-        '''get user user_id how send the message 
+        '''get user_id how send the message 
 
         Arguments:
             email -- str
@@ -89,9 +81,10 @@ class CRUD_authentification():
         
 
 
+
 if __name__ == "__main__":
 
-    gestion = CRUD_authentification()
+    gestion = Authentification()
     # gestion.create("admin","admin","admin@admin2.com","admin")
     # gestion.update()
     # gestion.delete("magomed.agaev@gmail.com")
