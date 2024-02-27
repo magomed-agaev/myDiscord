@@ -1,6 +1,6 @@
 // let sendBtn = document.getElementById("send-button");
 
-function send() {  
+function send() {
     var message = document.getElementById("message_input").value;
     eel.set_message(message);
 }
@@ -11,4 +11,6 @@ function set_Message() {
     return message
 
 }
+
+
 
