@@ -38,9 +38,6 @@ body {
     padding: 18px;
     margin-top: -18px;
     margin-left: -18px;
-
-
-
 }
 
 li {
@@ -59,9 +56,6 @@ li {
     background-size: cover;
     border-width: 100px;
     border-top: 40px solid #b8baba;
-
-
-
 }
 
 .message {
@@ -70,7 +64,6 @@ li {
 
 .message-sender {
     font-weight: bold;
-
 }
 
 .message-content {
@@ -83,8 +76,6 @@ li {
     background-color: white;
     text-align: left;
     padding-left: 50px;
-
-
 }
 
 .round-input {
@@ -157,18 +148,18 @@ img {
     height: 50px;
 }
 
-.login-button {
+.logout-button {
     margin-right: 100px;
     /* Adjusted margin to move the button 10px to the left */
 }
 
 
-.login-button {
+.logout-button {
     margin-left: auto;
     /* Pushes the login button to the right */
 }
 
-.login-button button {
+.logout-button button {
     background-color: #d32525;
     /* WhatsApp green color */
     color: #fff;

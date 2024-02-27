@@ -25,9 +25,15 @@ function Signin() {
     
     var email = document.getElementById("email").value;
     var password_hash = document.getElementById("password").value;
-    eel.Signin(email, password_hash)
+    eel.Signin(email, password_hash);
+     
 }
 
+eel.expose(redirect_chat);
+function redirect_chat() {
+    window.location.href = 'index_chat.html';
+
+}
 
 function Signup() {
     firstnameField.style.maxHeight = "100%";

@@ -35,10 +35,9 @@ class Database:
         except:
             mydb.rollback()
 
-        cursor.close()
-        mydb.close()
-
-        
+    def close(self):  
+        self.cursor.close()
+        self.mydb.close()
 
 if __name__ == "__main__":
     gestion = Database()
