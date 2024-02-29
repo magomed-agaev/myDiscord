@@ -7,19 +7,53 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: #1c9d69;
+    background-color: #1ba26c;
+}
+
+/* header {
+    background-color: #808a86;
+    padding: 1px;
+    width: 66.5%;
+    margin-left: 413px;
+
+} */
+
+.background {
+    position: fixed;
+    top: 0.1px;
+    left: 425px;
+    background-color: #20b77b;
+    padding: 21px;
+    width: 62.1%;
+    height: 10px;
+    z-index: 999;
+
+}
+
+.background img {
+    height: 37px;
+    width: 42px;
+    position: relative;
+    top: -13px;
+    right: 8px;
+
+
+}
+
+.username {
+    position: absolute;
+    top: 51%;
+    right: 728px;
+    transform: translateY(-50%);
+    font-size: 17px;
+    color: rgb(225, 224, 224)
 }
 
 
 
 
 .border {
-    /* display: flex; */
-    /* align-items: center; */
     padding: 10px;
-
-
-    /* WhatsApp chat input background color */
 }
 
 
@@ -68,7 +102,6 @@ li img {
     display: none;
 }
 
-
 .message-table {
     flex: 4;
     padding: 20px;
@@ -76,8 +109,7 @@ li img {
     background-image: url(https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png);
     background-repeat: no-repeat;
     background-size: cover;
-    border-width: 100px;
-    border-top: 40px solid #b8baba;
+
 }
 
 
@@ -110,11 +142,12 @@ li img {
 
 
 .container3 input[type="text"] {
-    width: 336px;
+    width: 330px;
     padding: 10px;
     background-color: white;
     text-align: left;
     padding-left: 50px;
+
 }
 
 
@@ -198,6 +231,16 @@ li img {
     /* Adjust size as needed */
     margin-right: 10px;
     /* Adjust spacing */
+}
+
+#audio-button {
+    margin-right: 10px;
+
+}
+
+#audio-button img {
+    width: 17px;
+    height: 20px;
 }
 
 

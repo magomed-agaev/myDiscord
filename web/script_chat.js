@@ -12,25 +12,7 @@ function set_Message() {
 
 }
 
-function send() {
-    var messageInput = document.getElementById("message_input");
-    var messageContent = messageInput.value.trim(); // Trim whitespace
 
-    if (messageContent !== "") {
-        // You can perform additional validation here if needed
-
-        // Append the message to the chat interface
-        appendMessage("You", messageContent);
-
-        // Clear the message input field
-        messageInput.value = "";
-
-        // Send the message to the server or perform further actions
-        // You can use AJAX or WebSockets to send the message to the server
-    } else {
-        alert("Please enter a message.");
-    }
-}
 
 function appendMessage(sender, content) {
     var chatMessages = document.getElementById("chat-messages");
