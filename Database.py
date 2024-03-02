@@ -3,7 +3,7 @@ import os
 import mysql.connector
 
 #Chargement des données
-load_dotenv(encoding="utf-8")  
+load_dotenv(encoding = "utf-8")  
 
 class Database:
     def __init__(self):

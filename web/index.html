@@ -14,8 +14,7 @@
     <div class="container">
         <div class="form-box">
             <h1 id="title">Sign Up</h1>
-            <form>
-                <div class="input-group">
+                <form class="connection">
                     <div class="input-field">
                         <i class="fa-solid fa-envelope"></i>
                         <input type="email" id="email" placeholder="EMAIL" required />
@@ -24,23 +23,36 @@
                         <i class="fa-solid fa-key"></i>
                         <input type="password" id="password" placeholder="PASSWORD" required />
                     </div>
-                    <div class="input-field" id="firstnameField">
-                        <i class="fa-regular fa-user"></i>
-                        <input type="text" id="nom" placeholder="FIRST NAME" autofocus required/>
-                    </div>
-                    <div class="input-field" id="lastnameField">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" id="prenom" placeholder="LAST NAME" required />
-                    </div> 
-                    
-                </div>
-                
+                </form>
                 <div class="btn-field">
-                    <button type="submit" id="signupBtn" class="disabled" onclick="Signup()">Sign up</button>
+                    <button type="submit" id="signupBtn" class="disabled" onclick="Signup();">Sign up</button>
+                    <!-- <button type="submit" id="signupBtn"  onclick="hidden()">Sign up</button> -->
+
                     <button type="submit" id="signinBtn" onclick="Signin();getUserEmail()">Sign in</button>
+                    <!-- <button type="submit" id="signinBtn" onclick="">Sign in</button> -->
+
                 </div>
+                <form class="inscription" id="inscription">
+                    <div class="input-group">
+                        <div class="input-field">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="email" placeholder="EMAIL" required />
+                        </div>
+                        <div class="input-field">
+                            <i class="fa-solid fa-key"></i>
+                            <input type="password" id="password" placeholder="PASSWORD" required />
+                        </div>
+                        <div class="input-field" id="firstnameField">
+                            <i class="fa-regular fa-user"></i>
+                            <input type="text" id="nom" placeholder="FIRST NAME" autofocus required/>
+                        </div>
+                        <div class="input-field" id="lastnameField">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="prenom" placeholder="LAST NAME" required />
+                        </div> 
+                    </div>
+                </form>
             
-            </form>
         </div>
     </div>
 

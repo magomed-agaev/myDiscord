@@ -1,12 +1,13 @@
 from authentification import Authentification
 from mysql.connector import Error
+from database import Database
 from chat import Chat
 import eel
-import time
+# import time
 
 chat = Chat()
 login = Authentification()
-
+dtb = Database()
 
 eel.init("web")
 
@@ -16,13 +17,12 @@ def Signup(nom:str, prenom:str, email:str, passwd:str):
     if "" not in [nom,prenom,email,passwd]:
         if not login.read(email):
             try :
-                
                 login.set_new_user(nom,prenom,email,passwd)
                 print("ok")
                 eel.redirect_chat()()
 
             except Error as e: 
-                print ("Il semble y avoir une erreur veuillez réessayer")      
+                print (f"Il semble y avoir une erreur veuillez réessayer,{e}")       
 
 @eel.expose
 def Signin(email:str,passwd:str):
@@ -33,22 +33,25 @@ def Signin(email:str,passwd:str):
                 eel.redirect_chat()()
                                           
                 
-@eel.expose
-def get_message():
-    msg = eel.set_Message()()
-    return msg 
+# @eel.expose
+# def get_message():
+#     msg = eel.get_Message()()
+#     return msg 
 
+@eel.expose
+def conversation(message):
+    id_sender = chat.get_id_sender()
+    chat.set_msg(id_sender,message)
 
 @eel.expose
-def set_message(message:str):
-    id_sender = chat.get_sender()
-    while True :
-        chat.set_msg(id_sender,message)
-        chat.get_msg()
-        #wait 1s
-        time.sleep(1)
-        
+def Affichage():
+    return chat.get_msg()  
+
+@eel.expose
+def close():
+    dtb.close()
 
 if __name__ == "__main__":
+    
     eel.start("index.html", mode='mozilla',port=9998)
     # print(get_user_email())

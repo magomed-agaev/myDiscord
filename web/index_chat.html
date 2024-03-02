@@ -1,48 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Web</title>
+    <title>Online Chat</title>
     <link rel="stylesheet" href="style_chat.css">
     <script src="https://kit.fontawesome.com/1c55cc9337.js" crossorigin="anonymous"></script>
 
+
 </head>
 
+
 <body>
+
     <script type="text/javascript" src="/eel.js"></script>
     <div class="container">
         <div class="friends-list">
-            <!-- Friends list content goes here -->
+            <div class="container3">
+                <div><input type="text" class="round-input" placeholder="Search or start new chat"></div>
+                <ul>
 
-            <ul>
-                <div class="container3">
-                    <div><input type="text" class="round-input" placeholder="Search or start new chat"></div>
 
-                    <li> <img src="https://cdn-icons-png.flaticon.com/256/3135/3135789.png" alt="png"
-                            style="height: 40px; width: 40px; margin-top: 10px;">
+                    <li> <img src="https://cdn-icons-png.flaticon.com/256/3135/3135789.png" alt="png">
                         Friend 1
                     </li>
 
-                    <li> <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="png2"
-                            style="height: 40px; width: 40px; margin-top: 10px;">
+
+                    <li> <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="png2">
                         Friend 2
                     </li>
 
-                    <li> <img src="https://cdn-icons-png.flaticon.com/512/780/780259.png" alt="png3"
-                            style="height: 40px; width: 40px; margin-top: 10px;">
+
+                    <li> <img src="https://cdn-icons-png.flaticon.com/512/780/780259.png" alt="png3">
                         Friend 3
                     </li>
-                    
-            </ul>
-            <div class="logout-button">
-                <button id="logout-button" onclick="">Log out</button>
+                </ul>
+                <a href="index.html">
+                    <div class="logout-button">
+                        <button id="logout-button" onclick="Close()">Log out</button>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="border"></div>
         <div class="message-table">
-            <!-- Message table content goes here -->
+
+            <div class="background"><img src="https://cdn-icons-png.flaticon.com/512/4323/4323015.png" alt="png">
+                <div class="username">User</div>
+            </div>
             <div class="message">
                 <div class="message-sender"></div>
                 <div class="message-content"></div>
@@ -53,26 +61,38 @@
             </div>
             <main>
                 <div class="chat-container">
-                    <div class="chat-messages" id="chat-messages">
-                        <!-- Chat messages will be added here dynamically -->
+                    <div class="chat_messages" id="chat_messages">
                     </div>
-                   
                 </div>
-                <div class="chat-input">
-                    <input type="text" id="message_input" placeholder="Type your message..." >
-                    <input type="file" id="image-input" accept="image/*" style="display: none;">
-                    <label for="image-input" style="margin-right: 15px;">
+                <!-- <div class="chat-input"> -->
+                <form class="chat-input">
+                    <input type="text" id="message_input" placeholder="Type your message..." required/>
+                    <input type="file" id="image-input" accept="image/*;">
+                    
+                    <label for="image-input" class="image-label">
                         <img src="https://cdn-icons-png.flaticon.com/512/8377/8377243.png" alt="Image Icon"
-                            id="image-icon" style="width: 30px; height: 30px;">
+                            id="image-icon">
                     </label>
+                    
                     <button id="emoji-button">😊</button>
-                    <button type="submit" id="send_button" onclick="send();set_Message()" >Send</button>
-                </div>
+                    <button id="audio-button">
+                        <img src="https://flaticons.net/icon.php?slug_category=mobile-application&slug_icon=voice-search"
+                            alt="Audio Icon">
+                        </button>
+                        <button type="submit" id="send_button" onclick="send();set_Message()" >Send</button>
+                </form>  
+                <!-- </div> -->
             </main>
-           
         </div>
-    </div>
-    <script type="text/javascript" src="script_chat.js"></script>
 
+    <script type="text/javascript" src="script_chat.js"></script>
+        
 </body>
+
+            
+
+
+
+
+
 </html>
