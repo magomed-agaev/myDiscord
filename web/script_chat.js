@@ -38,8 +38,11 @@ window.onload = function () {
         tab.forEach(function (message) {
             chat.insertAdjacentHTML("beforeend", '<p>' + message + '</p>');
         });
-        // window.scrollBy(0, window.innerHeight);      
-        // Réappeler la fonction refreshChat après un certain délai
+        
+        var height_page = window.innerHeight
+        console.log(height_page)
+        window.scrollTo(0,height_page);
+               
         setTimeout(refreshChat, 1000); // Actualise toutes les 1000 millisecondes (toutes les secondes)
     });
 })();

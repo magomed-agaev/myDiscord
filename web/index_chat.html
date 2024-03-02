@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Chat</title>
     <link rel="stylesheet" href="style_chat.css">
-    <script src="https://kit.fontawesome.com/1c55cc9337.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/1c55cc9337.js" crossorigin="anonymous"></script> -->
 
 
 </head>
@@ -64,7 +64,7 @@
                     <div class="chat_messages" id="chat_messages">
                     </div>
                 </div>
-                <!-- <div class="chat-input"> -->
+                
                 <form class="chat-input">
                     <input type="text" id="message_input" placeholder="Type your message..." required/>
                     <input type="file" id="image-input" accept="image/*;">
@@ -79,7 +79,7 @@
                         <img src="https://flaticons.net/icon.php?slug_category=mobile-application&slug_icon=voice-search"
                             alt="Audio Icon">
                         </button>
-                        <button type="submit" id="send_button" onclick="send();set_Message()" >Send</button>
+                        <button type="submit" id="send_button" onclick="send()" >Send</button>
                 </form>  
                 <!-- </div> -->
             </main>

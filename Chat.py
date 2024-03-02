@@ -7,7 +7,8 @@ class Chat:
         self.connect = Authentification()
    
     def set_msg(self,id_sender,message_is, id_type=1):
-        '''create new row in table Chat_Public
+        '''
+        create new row in table Chat_Public
 
         Arguments:
             id_sender -- id_user how send this message
@@ -23,21 +24,23 @@ class Chat:
         
 
     def get_id_sender(self):
-        '''return id_sender
         '''
-        req = "SELECT id_sender FROM chat_public order by time limit 1  "
+        return id_sender
+        '''
+        req = "SELECT id_sender FROM chat_public order by time limit 1"
         id_sender = self.dtb.query(req,None)       
         #Because id_sender is a tuple in a liste so [0][0] is for erase le liste and the tuple 
         return id_sender[0][0]
        
     def get_msg(self):
-        '''return message
+        '''
+        return message
         '''
         req = "SELECT message_is FROM chat_public"
         result = self.dtb.query(req,None)
         tab = []
         for i in result : 
-            # for i in range (len(result)-1):
+           # for i in range (len(result)-1):
            tab.append(i[0])
         return tab
 
@@ -49,7 +52,8 @@ class Chat:
         return self.dtb.query(req,None)
 
     def get_sender_name(self,id_sender=1):
-        '''return sender name 
+        '''
+        return sender name 
         '''
         req = "Select nom from users where user_id = %s"
         value = (id_sender)
@@ -60,7 +64,6 @@ class Chat:
         req = "DELETE FROM chat_Public WHERE id_sender = %s"
         value = (id_sender)
         self.dtb.query(req,value)
-
         print("message deleted successfully") 
 
 
@@ -68,11 +71,13 @@ if __name__ == "__main__":
 
     gestion = Chat()
     # gestion.set_msg(self,id_sender:int, message_is:str, id_type:int)
-    gestion.set_msg(1,'wsh_test_1')
+    # gestion.set_msg(1,'wsh_test_1')
     # gestion.delete("magomed.agaev@gmail.com")
     # gestion.read()
     # gestion.close_all()
     # print(gestion.get_msg())
+
+
 
 
         

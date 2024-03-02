@@ -13,7 +13,9 @@ class Database:
         self.__database = os.getenv('database')
          
     def __connect(self):    
-        #connection base de donnée
+        '''
+        connection to database
+        '''
         mydb = mysql.connector.connect(
         
             host = self.__host,
@@ -38,6 +40,7 @@ class Database:
     def close(self):  
         self.cursor.close()
         self.mydb.close()
+
 
 if __name__ == "__main__":
     gestion = Database()
