@@ -1,35 +1,115 @@
-// appel des boutons depuis fichier html
-let signupBtn = document.getElementById("signupBtn").click();
-let signuinBtn = document.getElementById("signinBtn");
-let firstnameField = document.getElementById("firstnameField");
-let lastnameField = document.getElementById("lastnameField");
-let title = document.getElementById("title");
+// // appel des boutons depuis fichier html
 
-// fonction onclick de sign in pour cacher les inputs firstname et lastname
-signinBtn.onclick = function () {
-    firstnameField.style.maxHeight = "0%";
-    lastnameField.style.maxHeight = "0%";
-    title.innerHTML = "Sign In";
-    signupBtn.classList.add("disable");
-    signuinBtn.classList.remove("disable");
+// let signinBtn = document.getElementById("signinBtn");
+// let signupBtn = document.getElementById("signupBtn");
+// let firstnameField = document.getElementById("firstnameField");
+// let lastnameField = document.getElementById("lastnameField");
+// let title = document.getElementById("title");
 
-}
+
 
 // fonction pour afficher les inputs firstname et lastname
-signupBtn.onclick = function () {
-    firstnameField.style.maxHeight = "100%";
-    lastnameField.style.maxHeight = "100%";
-    title.innerHTML = "Sign Up";
-    signupBtn.classList.remove("disable");
-    signuinBtn.classList.add("disable");
+
+
+
+function setFormMessage(formElement, type, message) {
+    const messageElement = formElement.querySelector(".form__message");
+
+    messageElement.textContent = message;
+    messageElement.classList.remove("form__message--success", "form__message--error");
+    messageElement.classList.add(`form__message--${type}`);
 }
 
-document.getElementById("signupBtn").addEventListener("click", async () => {
-    const FIRSTNAME = document.getElementById("firstnameField").value;
-    const LASTNAME = document.getElementById("lastnameField").value;
-    const EMAIL = document.getElementById("emailField").value;
-    const PASSWORD = document.getElementById("passwordField").value;
+function setInputError(inputElement, message) {
+    inputElement.classList.add("form__input--error");
+    inputElement.parentElement.querySelector(".form__input-error-message").textContent = message;
+}
 
-    const result = await eel.signup(FIRSTNAME, LASTNAME, EMAIL, PASSWORD)();
-    console.log(result);
+function clearInputError(inputElement) {
+    inputElement.classList.remove("form__input--error");
+    inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
+}
+
+// onclick se mets automatiquement sur le input : si DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.querySelector("#login");
+    const createAccountForm = document.querySelector("#createAccount");
+
+
+    document.querySelector("#linkCreateAccount").addEventListener("click", e => {
+        e.preventDefault(); //arrete la redirection on clickant sur le link
+        loginForm.classList.add("form--hidden"); //cashe le form login
+        createAccountForm.classList.remove("form--hidden"); //montre le form create account
+    });
+
+    document.querySelector("#linkLogin").addEventListener("click", e => {
+        e.preventDefault();//arrete la redirection on clickant sur le link
+        loginForm.classList.remove("form--hidden"); //montre le form log in
+        createAccountForm.classList.add("form--hidden");//cache le fomr create account
+    });
+
+    // loginForm.addEventListener("submit", e => {
+    //     e.preventDefault();
+
+
+    //     setFormMessage(loginForm, "error", "Invalid username or password");
+    // });
+
+    document.querySelectorAll(".form__input").forEach(inputElement => {
+        inputElement.addEventListener("blur", e => {
+            if (e.target.id === "signupFirstname" && e.target.value.length < 1) {
+                setInputError(inputElement, "First-name must be at least 1 characters in length");
+            }
+
+        });
+        document.querySelectorAll(".form__input").forEach(inputElement => {
+            inputElement.addEventListener("blur", e => {
+                if (e.target.id === "signupLastname" && e.target.value.length < 1) {
+                    setInputError(inputElement, "Last-name must be at least 1 characters in length");
+                }
+
+            });
+            // @ est obligatoire
+            document.querySelectorAll(".form__input").forEach(inputElement => {
+                inputElement.addEventListener("blur", e => {
+                    if (e.target.id === "email_adress" && !e.target.value.includes("@")) {
+                        setInputError(inputElement, "Email address must contain the '@' symbol.");
+                    }
+                });
+            });
+            //  Les carecteres speciaux sont obligatoires
+            document.querySelectorAll(".form__input").forEach(inputElement => {
+                inputElement.addEventListener("blur", e => {
+                    if (e.target.id === "password" && !e.target.value.includes("@.,_?§!$*µ)([]-&~")) {
+                        setInputError(inputElement, "Password must contain at least one special character: @.,_?§!$*µ)([]-&~ ");
+                    }
+                });
+            });
+            inputElement.addEventListener("input", e => {
+                clearInputError(inputElement);
+            });
+        });
+    });
 });
+
+// function login() {
+//     var email = document.getElementById("email_adress").value;
+//     var password = document.getElementById("password").value;
+//     eel.Signin(email, password_hash)
+
+// }
+
+// function signup() {
+
+//     var nom = document.getElementById("signupLastname").value;
+//     var prenom = document.getElementById("signupFirstname").value;
+//     var email = document.getElementById("email_adress").value;
+//     var password = document.getElementById("password").value;
+//     eel.Signup(nom, prenom, email, password_hash)
+
+// }
+
+// eel.expose(redirect_chat);
+// function redirect_chat() {
+//     window.location.href = "index_chat.html";
+// }
