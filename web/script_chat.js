@@ -13,7 +13,6 @@ function set_Message() {
 }
 
 
-
 function appendMessage(sender, content) {
     var chatMessages = document.getElementById("chat-messages");
     var messageElement = document.createElement("div");
