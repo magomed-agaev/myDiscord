@@ -1,7 +1,6 @@
 from crud_authentification import CRUD_authentification
 from mysql.connector import Error
 import eel
-import eel
 
 eel.init("web")
 eel.start("index.html")
