@@ -1,12 +1,15 @@
 
 function send() {
     var message = document.getElementById("message_input").value;
+    // if not message == "":
     eel.conversation(message);
+    
 }
 
 function Close() {
     eel.Close()
 }
+
 
 window.onload = function () {
 // eel.expose(get_Message)
@@ -46,15 +49,18 @@ window.onload = function () {
     eel.Affichage()(function(result) { //fonction callback function(result)
         var chat = document.getElementById('chat_messages');
         var tab = result;
-
-
+        
+        console.log(tab)
         chat.innerHTML = ''; //réinitialise tout le contenue de la <div> chat_message
 
         tab.forEach(function (message) {
-            chat.insertAdjacentHTML("beforeend", '<p>' + message + '</p>');
+            chat.insertAdjacentHTML("beforeend", '<div class = "message">' + message[2] + '</div>');
+            chat.insertAdjacentHTML("beforeend", '<span class = "time">' + message[4] + '</span>');
+            chat.insertAdjacentHTML("beforeend", '<span class = "author">' + message[3] + '</span>')
         });
-                       
+           
     });
+   
       
 })();// IIEF -->mmediately Invoked Function Expression, encapsule tout le code et l'execute direct.
 

@@ -9,6 +9,7 @@ chat = Chat()
 login = Authentification()
 dtb = Database()
 
+
 eel.init("web")
 
 @eel.expose
@@ -37,15 +38,21 @@ def Signin(email:str,passwd:str):
 # def get_message():
 #     msg = eel.get_Message()()
 #     return msg 
+@eel.expose
+def get_userEmail():
+    email = eel.getUserEmail()
+    return email
+
+id_sende = login.get_Id_user(email=chat.get_userEmail())
 
 @eel.expose
 def conversation(message):
-    id_sender = chat.get_id_sender()
+    id_sender = chat.get_id_sender(id_sender)
     chat.set_msg(id_sender,message)
 
 @eel.expose
 def Affichage():
-    return chat.get_msg()  
+    return chat.get_msg_all()  
 
 @eel.expose
 def Time():

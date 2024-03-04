@@ -5,7 +5,8 @@ class Chat:
     def __init__(self):
         self.dtb = Database()
         self.connect = Authentification()
-   
+        
+    
     def set_msg(self,id_sender,message_is, id_type=1):
         '''
         create new row in table Chat_Public
@@ -18,20 +19,25 @@ class Chat:
         req = "INSERT INTO Chat_public(id_sender,message_is,id_type) VALUES (%s,%s,%s) "
         values = (id_sender, message_is, id_type)
         self.dtb.query(req,values)
-       
-        # print(result)
-        # return result
-        
-
+    
     def get_id_sender(self):
         '''
         return id_sender
         '''
         req = "SELECT id_sender FROM chat_public order by time limit 1"
-        id_sender = self.dtb.query(req,None)       
+        id_sender = self.dtb.query(req,None) 
+        return id_sender      
         #Because id_sender is a tuple in a liste so [0][0] is for erase le liste and the tuple 
-        return id_sender[0][0]
-       
+        # return id_sender[0][0]
+
+    def get_msg_all(self):
+        '''
+        return message
+        '''
+        req = "SELECT * FROM chat_public"
+        result = self.dtb.query(req,None)
+        return result
+
     def get_msg(self):
         '''
         return message
@@ -44,7 +50,6 @@ class Chat:
            tab.append(i[0])
         return tab
 
-        
     def get_time(self):
         '''return message time
         '''
@@ -56,23 +61,24 @@ class Chat:
            tab.append(i[0])
         return tab
 
-    def get_sender_name(self,id_sender=1):
+    def get_sender_name(self):
         '''
         return sender name 
         '''
         req = "Select nom from users where user_id = %s"
-        value = (id_sender)
+        
+        value = (self.get_id_sender(),)
         sender = self.dtb.query(req,value) 
-        return sender
-        # tab = []
-        # for i in sender : 
-        #    # for i in range (len(result)-1):
-        #    tab.append(i[0])
-        # return tab   
+        # return sender
+        tab = []
+        for i in sender : 
+           # for i in range (len(result)-1):
+           tab.append(i[0])
+        return tab   
              
-    def delete_msg(self, id_sender:str):
+    def delete_msg(self, id_sender:int):
         req = "DELETE FROM chat_Public WHERE id_sender = %s"
-        value = (id_sender)
+        value = (id_sender,)
         self.dtb.query(req,value)
         print("message deleted successfully") 
 
@@ -80,13 +86,17 @@ class Chat:
 if __name__ == "__main__":
 
     gestion = Chat()
+
     # gestion.set_msg(self,id_sender:int, message_is:str, id_type:int)
     # gestion.set_msg(1,'wsh_test_1')
     # gestion.delete("magomed.agaev@gmail.com")
+    # gestion.delete_msg(1)
     # gestion.read()
     # gestion.close_all()
     # print(gestion.get_sender_name())
-    print(gestion.get_time())
+    print(gestion.get_id_sender())
+    # print(gestion.get_time())
+    # print(gestion.get_msg_all())
 
 
 
