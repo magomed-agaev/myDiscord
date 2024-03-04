@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os 
 import mysql.connector
+from mysql.connector import Error
 
 #Chargement des données
 load_dotenv(encoding = "utf-8")  
@@ -30,12 +31,20 @@ class Database:
     def query(self,req,value,modif=False):
         mydb, cursor = self.__connect()
         try:
+            # Envoie la requete ("req") à la base de donnée
             cursor.execute(req,value)
+            
+            # Par défault il fait un fetchall et il retourne le resultat
             if modif is False:
                 result = cursor.fetchall()
                 return result
-        except:
+        except Error as e:
+            # Annule les modif effectuées
             mydb.rollback()
+            print(e)
+        
+            
+            
 
     def close(self):  
         self.cursor.close()

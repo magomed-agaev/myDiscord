@@ -7,9 +7,6 @@ function send() {
 function Close() {
     eel.Close()
 }
-// setTimeout(function() {
-//     location.reload();
-// }, 5000);
 
 window.onload = function () {
 // eel.expose(get_Message)
@@ -17,6 +14,7 @@ window.onload = function () {
 //     var message = document.getElementById("email").value;
 //     return message;
 // }
+    
 // eel.Affichage()((result) =>{
     
 //     var chat = document.getElementById('chat_messages');
@@ -28,29 +26,41 @@ window.onload = function () {
 //         })
     //     });
 
-(function refreshChat() {
-    eel.Affichage()((result) => {
+
+// (function refreshChat() {
+//     eel.Affichage()((result) => {
+//         var chat = document.getElementById('chat_messages');
+//         var tab = result;
+
+//         chat.innerHTML = '';
+
+//         tab.forEach(function (message) {
+//             chat.insertAdjacentHTML("beforeend", '<p>' + message + '</p>');
+//         });
+//         setTimeout(refreshChat, 1000); // Actualise toutes les 1000 millisecondes (toutes les secondes)
+//     });
+// })();
+                       
+
+(function refreshChat(){
+    eel.Affichage()(function(result) { //fonction callback function(result)
         var chat = document.getElementById('chat_messages');
         var tab = result;
 
-        chat.innerHTML = '';
+
+        chat.innerHTML = ''; //réinitialise tout le contenue de la <div> chat_message
 
         tab.forEach(function (message) {
             chat.insertAdjacentHTML("beforeend", '<p>' + message + '</p>');
         });
-        
-        var height_page = window.innerHeight
-        console.log(height_page)
-        window.scrollTo(0,height_page);
-               
-        setTimeout(refreshChat, 1000); // Actualise toutes les 1000 millisecondes (toutes les secondes)
+                       
     });
-})();
-
+      
+})();// IIEF -->mmediately Invoked Function Expression, encapsule tout le code et l'execute direct.
 
 }
 
-   
+
        
 
     

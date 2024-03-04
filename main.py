@@ -48,6 +48,14 @@ def Affichage():
     return chat.get_msg()  
 
 @eel.expose
+def Time():
+    return chat.get_time()
+
+@eel.expose
+def Author():
+    return chat.get_sender_name()
+       
+@eel.expose
 def close():
     dtb.close()
 

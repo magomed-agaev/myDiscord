@@ -18,7 +18,7 @@ class Chat:
         req = "INSERT INTO Chat_public(id_sender,message_is,id_type) VALUES (%s,%s,%s) "
         values = (id_sender, message_is, id_type)
         self.dtb.query(req,values)
-        # result = self.dtb.query(req,values)
+       
         # print(result)
         # return result
         
@@ -49,7 +49,12 @@ class Chat:
         '''return message time
         '''
         req = "SELECT time FROM chat_public"
-        return self.dtb.query(req,None)
+        result = self.dtb.query(req,None)
+        tab = []
+        for i in result : 
+           # for i in range (len(result)-1):
+           tab.append(i[0])
+        return tab
 
     def get_sender_name(self,id_sender=1):
         '''
@@ -58,7 +63,12 @@ class Chat:
         req = "Select nom from users where user_id = %s"
         value = (id_sender)
         sender = self.dtb.query(req,value) 
-        return sender    
+        return sender
+        # tab = []
+        # for i in sender : 
+        #    # for i in range (len(result)-1):
+        #    tab.append(i[0])
+        # return tab   
              
     def delete_msg(self, id_sender:str):
         req = "DELETE FROM chat_Public WHERE id_sender = %s"
@@ -75,7 +85,8 @@ if __name__ == "__main__":
     # gestion.delete("magomed.agaev@gmail.com")
     # gestion.read()
     # gestion.close_all()
-    # print(gestion.get_msg())
+    # print(gestion.get_sender_name())
+    print(gestion.get_time())
 
 
 
