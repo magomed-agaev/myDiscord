@@ -52,13 +52,13 @@ function clearInputError(inputElement) {
     const createAccountForm = document.querySelector("#createAccount");
 
     document.querySelector("#linkCreateAccount").addEventListener("click", e => {
-        // e.preventDefault(); //arrete la redirection on clickant sur le link
+        e.preventDefault(); //arrete la redirection on clickant sur le link
         loginForm.classList.add("form--hidden"); //cashe le form login
         createAccountForm.classList.remove("form--hidden"); //montre le form create account
     });
 
     document.querySelector("#linkLogin").addEventListener("click", e => {
-        // e.preventDefault();//arrete la redirection on clickant sur le link
+        e.preventDefault();//arrete la redirection on clickant sur le link
         loginForm.classList.remove("form--hidden"); //montre le form log in
         createAccountForm.classList.add("form--hidden");//cache le fomr create account
     });
