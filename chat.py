@@ -39,7 +39,7 @@ class Chat:
 
     def get_msg_all(self):
         '''
-        return message
+        return: liste with name ,message,id_type and date.time 
         '''
         req = "SELECT prenom, message_is, id_type, DATE_FORMAT(time, '%d/%m/%Y %H:%i:%s') AS time_formatée FROM users \
                 INNER JOIN chat_public ON users.user_id = chat_public.id_sender order by id;"
@@ -66,17 +66,6 @@ class Chat:
            tab.append(i[0])
         return tab
 
-    # def get_time(self):
-    #     '''return message time
-    #     '''
-    #     req = "SELECT time FROM chat_public"
-    #     result = self.dtb.query(req,None)
-    #     tab = []
-    #     for i in result : 
-    #        # for i in range (len(result)-1):
-    #     #    valeur = i[0]
-    #        tab.append(i[0].strftime('%d/%m/%Y %H:%M'))
-    #     return tab
     def get_time(self):
         '''return message time
         '''
@@ -93,8 +82,6 @@ class Chat:
         return sender name 
         '''
         req = "select nom from chat_public inner join users ON chat_public.id_sender = users.user_id;"
-        
-        # value = (self.get_id_sender(),)
         sender = self.dtb.query(req,None) 
         # return sender
         tab = []
