@@ -6,7 +6,6 @@ class Authentification:
         
     def set_new_user(self,last_name:str,name:str,email:str,passwd_hash:str):
         '''create new row in database
-
         Arguments:
             last_name -- str
             name -- str
@@ -16,20 +15,19 @@ class Authentification:
         req = "INSERT INTO users(nom,prenom,email,password_hash) VALUES (%s,%s,%s,%s) "
         values = (last_name,name,email,passwd_hash)
         self.dtb.query(req,values)     
-       
+
     def read(self,email:str):
         '''read user row in tables users
-        
         Returns:
             With email get all information user 
         '''
         req = "SELECT * FROM users where email = %s"
         value = (email,)
         return self.dtb.query(req,value)
+        
           
     def update(self,colonne:str,new_name:str,user_id:int):
         '''update table users
-
         Arguments:
             colonne -- str name_column
             new_name -- str new information
@@ -47,7 +45,6 @@ class Authentification:
                 req = "UPDATE users SET password_hash = %s WHERE user_id = %s"
             case _:
                 print("Column name no found")
-            
         values = (new_name,user_id)
         self.dtb.query(req,values,modif=True)
         print("users updated successfully")
@@ -76,21 +73,22 @@ class Authentification:
         '''
         req = "SELECT user_id FROM users where email = %s"
         value = (email,)    
+        result = self.dtb.query(req,value)[0][0]
+        return result
         
-        return self.dtb.query(req,value)
-        
-
-
-
 if __name__ == "__main__":
 
     gestion = Authentification()
     # gestion.create("admin","admin","admin@admin2.com","admin")
     # gestion.update()
     # gestion.delete("magomed.agaev@gmail.com")
-    print(gestion.read('admin@admin1.com'))
+    # print(gestion.read('admin@admin1.com'))
     # gestion.close_all()
-    # gestion.get_Id_user('admin@admin1.com')
+    # print(gestion.get_Id_user('admin@admin.com'))
+
+
+
+
 
 
         

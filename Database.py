@@ -42,10 +42,7 @@ class Database:
             # Annule les modif effectuées
             mydb.rollback()
             print(e)
-        
-            
-            
-
+    
     def close(self):  
         self.cursor.close()
         self.mydb.close()
@@ -53,4 +50,7 @@ class Database:
 
 if __name__ == "__main__":
     gestion = Database()
+            
+            
+
     

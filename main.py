@@ -2,8 +2,10 @@ from authentification import Authentification
 from mysql.connector import Error
 from database import Database
 from chat import Chat
+
 import eel
-# import time
+import webbrowser
+# from selenium import webdriver
 
 chat = Chat()
 login = Authentification()
@@ -20,35 +22,53 @@ def Signup(nom:str, prenom:str, email:str, passwd:str):
             try :
                 login.set_new_user(nom,prenom,email,passwd)
                 print("ok")
-                eel.redirect_chat()()
-
-            except Error as e: 
+                # eel.redirect_chat()()
+                webbrowser.open('http://localhost:9998/index_chat.html')
+            except Exception as e: 
                 print (f"Il semble y avoir une erreur veuillez réessayer,{e}")       
 
 @eel.expose
 def Signin(email:str,passwd:str):
     if "" not in [email,passwd]:
         for i in login.read(email):
+            print(1)
             if i[3] == email and i[4] == passwd:
-                print("user exist")
-                eel.redirect_chat()()
-                                          
+                global var
+                var = email
                 
+                print("user exist")              
+                # eel.redirect_chat()()
+                webbrowser.open('http://localhost:9998/index_chat.html')
+                print(3)
+                
+
+           
+
+                                      
 # @eel.expose
 # def get_message():
 #     msg = eel.get_Message()()
+#     print(msg)
 #     return msg 
-@eel.expose
-def get_userEmail():
-    email = eel.getUserEmail()
-    return email
 
-id_sende = login.get_Id_user(email=chat.get_userEmail())
+# eel.get_Message()(get_message)
+# @eel.expose
+# def get_user_email():
+#     return eel.getUserEmail()()
+
+# @eel.expose
+def get_iduser():
+    return login.get_Id_user(var)
+    
+
+# id_senden = login.get_Id_user(email=chat.get_userEmail())
 
 @eel.expose
-def conversation(message):
-    id_sender = chat.get_id_sender(id_sender)
-    chat.set_msg(id_sender,message)
+def conversation(msg):
+    print('ok')
+    id_user = get_iduser()
+    chat.set_msg(id_user,msg)
+    
 
 @eel.expose
 def Affichage():
