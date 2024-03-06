@@ -22,8 +22,8 @@ function Signin() {
 function Signup() {
     var nom = document.getElementById("signupLastname").value;
     var prenom = document.getElementById("signupFirstname").value;
-    var email = document.getElementById("email_adress").value;
-    var password_hash = document.getElementById("password").value;
+    var email = document.getElementById("signupEmail").value;
+    var password_hash = document.getElementById("signupPassword").value;
     eel.Signup(nom, prenom, email, password_hash);
 }
 

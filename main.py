@@ -40,11 +40,7 @@ def Signin(email:str,passwd:str):
                 # eel.redirect_chat()()
                 webbrowser.open('http://localhost:9998/index_chat.html')
                 print(3)
-                
-
-           
-
-                                      
+                                                     
 # @eel.expose
 # def get_message():
 #     msg = eel.get_Message()()
