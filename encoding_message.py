@@ -11,6 +11,7 @@ def decodage(msg):
     encoded_data = base64.b64decode(data)
     return encoded_data
 
+
 msg2 = emoji.demojize(msg)
 print(msg2)
 encodage(msg2)
