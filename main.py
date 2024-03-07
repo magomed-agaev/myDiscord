@@ -1,9 +1,9 @@
 from authentification import Authentification
 from database import Database
 from chat import Chat
+from hashage import hashage
 import eel
 import webbrowser
-
 
 chat = Chat()
 login = Authentification()
@@ -18,9 +18,13 @@ def Signup(nom:str, prenom:str, email:str, passwd:str):
     if "" not in [nom,prenom,email,passwd]:
         #Si l'email n'existe pas alors il crée l'utlisateur 
         if not login.read(email):
+            # hashage password
+            password_hash = hashage(passwd)
             try :
-                login.set_new_user(nom,prenom,email,passwd)
+                login.set_new_user(nom,prenom,email,password_hash)
                 print("ok")
+                global mail
+                mail = email
                 # eel.redirect_chat()()
                 webbrowser.open('http://localhost:9998/index_chat.html')
             except Exception as e: 
@@ -30,7 +34,9 @@ def Signup(nom:str, prenom:str, email:str, passwd:str):
 def Signin(email:str,passwd:str):
     if "" not in [email,passwd]:
         for i in login.read(email):
-            if i[3] == email and i[4] == passwd:
+            # hashage password
+            password_hash = hashage(passwd)
+            if i[3] == email and i[4] == password_hash:
                 global mail
                 mail = email
                 print("user connected !")              
@@ -51,16 +57,30 @@ def Signin(email:str,passwd:str):
 
 # Permet de recuperer la variable global mail user 
 def get_iduser():
+    '''get_iduser is fonction how get email from Signin
+
+    Returns:
+        _description_
+    '''
     return login.get_Id_user(mail)
     
 @eel.expose
-def conversation(msg):
-    print('ok')
+def conversation(msg:str):
+    '''conversation save message into the database with CRUD chat
+
+    Arguments:
+        msg -- message str from js
+    '''
     id_user = get_iduser()
     chat.set_msg(id_user,msg)
     
 @eel.expose
 def Affichage():
+    '''Affichage in a expose fonction for eel
+
+    Returns:
+        allt the lines from chat_public table
+    '''
     return chat.get_msg_all()  
 
 @eel.expose
@@ -78,4 +98,5 @@ def close():
 if __name__ == "__main__":
     
     eel.start("index.html", mode='mozilla',port=9998)
-    # print(get_user_email())
+   
+   

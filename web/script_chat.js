@@ -27,7 +27,7 @@ window.onload = function () {
             tab.forEach(function (message) {
                 var div = '<div class = bulle_chat>'+
 
-                        '<span class="auteur">' + message[0] + '</span>' + 
+                        '<span class="auteur">' + message[0]+ '</span>' + 
                             
                         '<p class="message">' + message[1] + '</p>' +
                         

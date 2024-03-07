@@ -2,6 +2,7 @@ function Signin() {
     var email = document.getElementById("loginEmail").value;
     var password_hash = document.getElementById("loginPassword").value;
     // console.log(window.Location.href);
+ 
     eel.Signin(email, password_hash);
     
     // window.location.href = 'index_chat.html'; 

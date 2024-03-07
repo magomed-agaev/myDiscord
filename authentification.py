@@ -82,7 +82,7 @@ if __name__ == "__main__":
     # gestion.create("admin","admin","admin@admin2.com","admin")
     # gestion.update()
     # gestion.delete("magomed.agaev@gmail.com")
-    # print(gestion.read('admin@admin1.com'))
+    print(gestion.read('abdel.ben-ahmed@hotmail.fr'))
     # gestion.close_all()
     # print(gestion.get_Id_user('admin@admin.com'))
 

@@ -110,7 +110,7 @@ if __name__ == "__main__":
     # print(gestion.get_sender_name())
     # print(gestion.get_id_sender())
     # print(gestion.get_time())
-    print(gestion.get_msg_all())
+    # print(gestion.get_msg_all())
 
 
 
