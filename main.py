@@ -1,14 +1,18 @@
 from authentification import Authentification
+from encoding_message import Data_codec
 from database import Database
 from chat import Chat
+from audio import Audio
 from hashage import hashage
 import eel
 import webbrowser
+import os
 
+audio = Audio()
 chat = Chat()
 login = Authentification()
 dtb = Database()
-
+codec = Data_codec()
 
 eel.init("web")
 
@@ -50,7 +54,7 @@ def Signin(email:str,passwd:str):
 #     print(msg)
 #     return msg 
 
-# eel.get_Message()(get_message)
+
 # @eel.expose
 # def get_user_email():
 #     return eel.getUserEmail()()
@@ -65,23 +69,49 @@ def get_iduser():
     return login.get_Id_user(mail)
     
 @eel.expose
-def conversation(msg:str):
+def conversation(msg:str,id_type=1):
     '''conversation save message into the database with CRUD chat
 
     Arguments:
         msg -- message str from js
     '''
     id_user = get_iduser()
-    chat.set_msg(id_user,msg)
-    
+    chat.set_msg(id_user,msg,id_type=1)
+
+# @eel.expose
+# def decode_simple(msg:str):
+#     print(codec.decodage_simple(msg))
+#     return codec.decodage_simple(msg)
+
 @eel.expose
 def Affichage():
     '''Affichage in a expose fonction for eel
 
     Returns:
-        allt the lines from chat_public table
+        all the lines with messages decoding from chat_public table
     '''
-    return chat.get_msg_all()  
+    msg_all = chat.get_msg_all()  
+    # Create a new list by copying each tuple from the msg_all list while modifying the message decoding
+    decode_all_msg = [(element[0], codec.decodage_all(element[1]), element[2],element[3]) for element in msg_all]
+    return decode_all_msg
+
+@eel.expose
+def set_audio():
+    file_name = audio.generator_file_name()
+    audio.record(file_name)
+    encoding_wav = codec.encodage_all(None,2,file_name)
+    id_user = get_iduser()
+    chat.set_msg(id_user,encoding_wav,2)
+    os.remove(file_name)
+
+@eel.expose
+def get_audio():
+    
+    file_name = audio.generator_file_name()
+    audio_encoding = chat.get_msg()
+    codec.decodage_simple(audio_encoding,2,file_name)
+    audio.play(file_name)
+    
 
 @eel.expose
 def Time():

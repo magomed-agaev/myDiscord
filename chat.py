@@ -1,12 +1,13 @@
 from database import Database
 from authentification import Authentification
-from datetime import datetime
+from encoding_message import Data_codec
 
 class Chat:
     def __init__(self):
         self.dtb = Database()
         self.connect = Authentification()
-        
+        self.codec = Data_codec()
+
     def set_msg(self,id_sender,message_is, id_type=1):
         '''
         create new ligne in table Chat_Public
@@ -16,7 +17,8 @@ class Chat:
             id_type -- messages types: -txt:1 -sound:2 -video:3 -picture:4
         '''
         req = "INSERT INTO Chat_public(id_sender,message_is,id_type) VALUES (%s,%s,%s) "
-        values = (id_sender, message_is, id_type)
+        message  = self.codec.encodage_simple(message_is)
+        values = (id_sender, message, id_type)
         self.dtb.query(req,values)
     
     def get_id_sender(self):
@@ -45,6 +47,7 @@ class Chat:
                 INNER JOIN chat_public ON users.user_id = chat_public.id_sender order by id;"
 
         result = self.dtb.query(req,None)
+        
         # tab = []
         # compt = len(result)
         # for i in range(0,compt):
@@ -54,12 +57,13 @@ class Chat:
         return result
 
 
-    def get_msg(self):
+    def get_msg(self,id_msg:int):
         '''
-        return message
+        return message encoding base64
         '''
-        req = "SELECT message_is FROM chat_public"
-        result = self.dtb.query(req,None)
+        req = "SELECT message_is FROM chat_public where id_user = %s and time = %"
+        value = (id_msg,)
+        result = self.dtb.query(req,value)
         tab = []
         for i in result : 
            # for i in range (len(result)-1):
@@ -69,7 +73,7 @@ class Chat:
     def get_time(self):
         '''return message time
         '''
-        req = " SELECT DATE_FORMAT(time, '%d/%m/%Y %H:%i:%s') AS date_formatée FROM chat_public;"
+        req = "SELECT DATE_FORMAT(time, '%d/%m/%Y %H:%i:%s') AS date_formatée FROM chat_public;"
         result = self.dtb.query(req,None)
         tab = []
         for i in result : 
@@ -115,7 +119,7 @@ if __name__ == "__main__":
     # print(gestion.get_sender_name())
     # print(gestion.get_id_sender())
     # print(gestion.get_time())
-    # print(gestion.get_msg_all())
+    print(gestion.get_msg_all())
 
 
 
