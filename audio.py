@@ -10,8 +10,8 @@ class Audio:
         # Instantiate PyAudio and initialize PortAudio system resources (1)
         self.p = pyaudio.PyAudio()
 
-        for i in range(self.p.get_device_count()):
-            print(self.p.get_device_info_by_index(i)["name"])
+        # for i in range(self.p.get_device_count()):
+        #     print(self.p.get_device_info_by_index(i)["name"])
 
         self.CHUNK = 1024
         # 2 octect for 16 
@@ -64,8 +64,8 @@ class Audio:
         # Release PortAudio system resources (5)
         self.p.terminate()
     
-    def generator_file_name():
-        file_name = "audio1.wav"
+    def generator_file_name(self):
+        file_name = "audio.wav"
         if os.path.exists(file_name) :   
             nom,extension = os.path.splitext(file_name)
             i=1

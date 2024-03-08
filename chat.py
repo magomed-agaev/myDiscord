@@ -8,7 +8,7 @@ class Chat:
         self.connect = Authentification()
         self.codec = Data_codec()
 
-    def set_msg(self,id_sender,message_is, id_type=1):
+    def set_msg(self,id_sender,message_is,id_type=1,file_name=None):
         '''
         create new ligne in table Chat_Public
         Arguments:
@@ -17,9 +17,16 @@ class Chat:
             id_type -- messages types: -txt:1 -sound:2 -video:3 -picture:4
         '''
         req = "INSERT INTO Chat_public(id_sender,message_is,id_type) VALUES (%s,%s,%s) "
-        message  = self.codec.encodage_simple(message_is)
-        values = (id_sender, message, id_type)
-        self.dtb.query(req,values)
+        if id_type == 1 :
+            # print("type=1")   
+            message  = self.codec.encodage_all(message_is,id_type)
+            # print(message)
+            values = (id_sender, message, id_type)
+            self.dtb.query(req,values)
+        else:
+            message  = self.codec.encodage_all(message_is,id_type,file_name)
+            values = (id_sender, message, id_type)
+            self.dtb.query(req,values)
     
     def get_id_sender(self):
         '''
@@ -38,14 +45,15 @@ class Chat:
     #     result = self.dtb.query(req,None)
     #     return result
 
-    def get_msg_all(self,all=True):
+    def get_msg_all(self):
+            
         '''
-        return: liste with name ,message,id_type and date.time 
+        return: liste with id ,name ,message,id_type and date.time 
         '''
         
-        req = "SELECT prenom, message_is, id_type, DATE_FORMAT(time, '%d/%m/%Y %H:%i:%s') AS time_formatée FROM users \
+        req = "SELECT id,prenom, message_is, id_type, DATE_FORMAT(time, '%d/%m/%Y %H:%i:%s') AS time_formatée FROM users \
                 INNER JOIN chat_public ON users.user_id = chat_public.id_sender order by id;"
-
+        
         result = self.dtb.query(req,None)
         
         # tab = []
@@ -61,14 +69,17 @@ class Chat:
         '''
         return message encoding base64
         '''
-        req = "SELECT message_is FROM chat_public where id_user = %s and time = %"
+        req = "SELECT message_is FROM chat_public where id = %s "
+        
         value = (id_msg,)
         result = self.dtb.query(req,value)
         tab = []
         for i in result : 
            # for i in range (len(result)-1):
            tab.append(i[0])
-        return tab
+           data = str(tab)[1:-1]
+        return data 
+        
 
     def get_time(self):
         '''return message time
@@ -119,7 +130,8 @@ if __name__ == "__main__":
     # print(gestion.get_sender_name())
     # print(gestion.get_id_sender())
     # print(gestion.get_time())
-    print(gestion.get_msg_all())
+    # print(gestion.get_msg_all())
+    # print(gestion.get_msg(224))
 
 
 

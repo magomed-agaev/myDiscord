@@ -76,7 +76,7 @@ def conversation(msg:str,id_type=1):
         msg -- message str from js
     '''
     id_user = get_iduser()
-    chat.set_msg(id_user,msg,id_type=1)
+    chat.set_msg(id_user,msg,id_type)
 
 # @eel.expose
 # def decode_simple(msg:str):
@@ -92,7 +92,9 @@ def Affichage():
     '''
     msg_all = chat.get_msg_all()  
     # Create a new list by copying each tuple from the msg_all list while modifying the message decoding
-    decode_all_msg = [(element[0], codec.decodage_all(element[1]), element[2],element[3]) for element in msg_all]
+    decode_all_msg = [(element[0], element[1],codec.decodage_all(element[2],element[3],'test.wav'), element[3],element[4]) for element in msg_all]
+    if os.path.exists('test.wav'):
+        os.remove('test.wav')
     return decode_all_msg
 
 @eel.expose
@@ -101,16 +103,17 @@ def set_audio():
     audio.record(file_name)
     encoding_wav = codec.encodage_all(None,2,file_name)
     id_user = get_iduser()
-    chat.set_msg(id_user,encoding_wav,2)
+    chat.set_msg(id_user,encoding_wav,2,file_name)
     os.remove(file_name)
 
 @eel.expose
-def get_audio():
+def get_audio(id):
     
     file_name = audio.generator_file_name()
-    audio_encoding = chat.get_msg()
-    codec.decodage_simple(audio_encoding,2,file_name)
+    audio_encoding = chat.get_msg(id)
+    codec.decodage_all(audio_encoding,2,file_name)
     audio.play(file_name)
+    os.remove(file_name)
     
 
 @eel.expose

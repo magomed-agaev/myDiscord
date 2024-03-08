@@ -15,8 +15,8 @@ function send_audio() {
     eel.set_audio()
 }
 
-function get_audio() {
-    eel.get_audio()
+function get_audio(id) {
+    eel.get_audio(id)
 }
 
 function Close() {
@@ -33,18 +33,18 @@ window.onload = function () {
 
             tab.forEach(function (message) {
                 // message[2] --> type_msg type = 1 ->txt type = 2 ->audio
-                if (message[2] === 1) {
+                if (message[3] === 1) {
                     var div = '<div class="bulle_chat">' +
-                        '<span class="auteur">' + message[0] + '</span>' +
-                        '<p class="message">' + message[1] + '</p>' +
-                        '<span class="time">' + message[3] + '</span>' +
+                        '<span class="auteur">' + message[1] + '</span>' +
+                        '<p class="message">' + message[2] + '</p>' +
+                        '<span class="time">' + message[4] + '</span>' +
                         '</div>';
                     chat.insertAdjacentHTML("beforeend", div);
                 } else {
                     var div = '<div class="bulle_chat">' +
-                    '<span class="auteur">' + message[0] + '</span>' +
-                    '<p class="message" onclick="get_audio()">' + Message_audio + '</p>' +
-                    '<span class="time">' + message[3] + '</span>' +
+                    '<span class="auteur" >' + message[1] + '</span>' +
+                    '<p class="message" onclick="get_audio('+message[0]+')">Message_audio</p>' +
+                    '<span class="time">' + message[4] + '</span>' +
                     '</div>';
                     chat.insertAdjacentHTML("beforeend", div);
                     }

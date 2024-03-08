@@ -1,6 +1,7 @@
 import base64
 import emoji
 import wave
+import os
 
 class Data_codec:
     def __init__(self):
@@ -73,9 +74,9 @@ class Data_codec:
         if type == 1:    
             decoded_data = base64.b64decode(msg)
             data = decoded_data.decode('utf-8')
-            
-            # return data
             return data
+            
+        
         else:
             decoded_data = base64.b64decode(msg)
             with wave.open(file_name,"wb") as wav_file:
@@ -87,7 +88,7 @@ class Data_codec:
                 wav_file.setframerate(44100)
                 # write into wav
                 wav_file.writeframes(decoded_data)
-                
+            
                 
 
 if __name__ == "__main__":
@@ -96,10 +97,10 @@ if __name__ == "__main__":
     message2 = "I love pizza! SSBsb3ZlIHBpenphIQ=="
     # message2 = '[(print)]'
 
-    cod1 = cod.encodage_simple(message2)
-    print(cod1)
-    cod2 = cod.decodage_simple(cod1)
-    print(cod2)
+    # cod1 = cod.encodage_simple(message2)
+    # print(cod1)
+    # cod2 = cod.decodage_all()
+    # print(cod2)
     
     
     # print(emojis)
