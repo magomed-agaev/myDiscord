@@ -59,14 +59,18 @@ class Authentification:
         
         value = (email,)
         self.dtb.query(req,value)
-
         print("users deleted successfully")
+
+    def delete_all_users(self):
+        req = "DELETE FROM users "
+        self.dtb.query(req,None)
+        print("All users deleted successfully")
         
     def get_Id_user(self,email:str):
         '''get user_id how send the message 
 
         Arguments:
-            email -- str
+            email -- user email
 
         Returns:
             User_id
@@ -79,10 +83,11 @@ class Authentification:
 if __name__ == "__main__":
 
     gestion = Authentification()
+    gestion.delete_all_users()
     # gestion.create("admin","admin","admin@admin2.com","admin")
     # gestion.update()
     # gestion.delete("magomed.agaev@gmail.com")
-    print(gestion.read('abdel.ben-ahmed@hotmail.fr'))
+    # print(gestion.read('abdel.ben-ahmed@hotmail.fr'))
     # gestion.close_all()
     # print(gestion.get_Id_user('admin@admin.com'))
 

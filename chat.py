@@ -9,7 +9,7 @@ class Chat:
         
     def set_msg(self,id_sender,message_is, id_type=1):
         '''
-        create new row in table Chat_Public
+        create new ligne in table Chat_Public
         Arguments:
             id_sender -- id_user how send this message
             message_is -- message encoding in base64
@@ -24,8 +24,7 @@ class Chat:
         return id_sender
         '''
         req = "SELECT id_sender FROM chat_public order by time limit 1"
-        id_sender = self.dtb.query(req,None) 
-        # return id_sender      
+        id_sender = self.dtb.query(req,None)       
         # Because id_sender is a tuple in a liste so [0][0] is for erase le liste and the tuple 
         return id_sender[0][0]
 
@@ -37,10 +36,11 @@ class Chat:
     #     result = self.dtb.query(req,None)
     #     return result
 
-    def get_msg_all(self):
+    def get_msg_all(self,all=True):
         '''
         return: liste with name ,message,id_type and date.time 
         '''
+        
         req = "SELECT prenom, message_is, id_type, DATE_FORMAT(time, '%d/%m/%Y %H:%i:%s') AS time_formatée FROM users \
                 INNER JOIN chat_public ON users.user_id = chat_public.id_sender order by id;"
 
@@ -95,7 +95,11 @@ class Chat:
         value = (id_sender,)
         self.dtb.query(req,value)
         print("message deleted successfully") 
-
+    
+    def delete_all_msg(self):
+        req = "DELETE FROM chat_Public "
+        self.dtb.query(req,None)
+        print("All messages deleted successfully") 
 
 if __name__ == "__main__":
 
@@ -105,6 +109,7 @@ if __name__ == "__main__":
     # gestion.set_msg(1,'wsh_test_1')
     # gestion.delete("magomed.agaev@gmail.com")
     # gestion.delete_msg(9)
+    # gestion.delete_all_msg()
     # gestion.read()
     # gestion.close_all()
     # print(gestion.get_sender_name())
